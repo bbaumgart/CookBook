@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="742.0" style="-fx-background-image: #706F6D;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CookbookController">
+   <children>
+      <MenuBar style="-fx-background-color: #706F6D;">
+        <menus>
+          <Menu mnemonicParsing="false" text="Plik">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#logoutAction" text="Wyloguj" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane prefHeight="395.0" prefWidth="600.0" style="-fx-background-color: #706F6D;" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Przepisy">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ComboBox fx:id="cb_recipe" layoutX="76.0" layoutY="47.0" onAction="#getRecipeAction" prefWidth="150.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="97.0" layoutY="20.0" prefHeight="17.0" prefWidth="109.0" text="PRZEPISY" textAlignment="CENTER" textOverrun="CLIP" />
+                        <TextField fx:id="tf_title" editable="false" layoutX="26.0" layoutY="81.0" prefHeight="25.0" prefWidth="250.0" promptText="tutuł" />
+                        <TextArea fx:id="tf_description" editable="false" layoutX="27.0" layoutY="117.0" prefHeight="115.0" prefWidth="250.0" wrapText="true" />
+                        <VBox layoutX="318.0" layoutY="14.0" prefHeight="306.0" prefWidth="265.0">
+                           <children>
+                              <Label text="Rodzaj Potrawy" />
+                              <TextField fx:id="tf_type" editable="false" />
+                              <Label text="Stopień Trudności" />
+                              <TextField fx:id="tf_level" editable="false" />
+                              <Label text="Typ Dania" />
+                              <TextField fx:id="tf_meal" editable="false" />
+                              <Label text="Czas Przygotowania" />
+                              <TextField fx:id="tf_prepareTime" editable="false" />
+                              <Label text="Składniki" />
+                              <ListView fx:id="tf_ingredient" prefHeight="145.0" prefWidth="265.0" />
+                           </children>
+                        </VBox>
+                        <ImageView fx:id="iv_image" fitHeight="100.0" fitWidth="250.0" layoutX="29.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="200.0">
+                           <image>
+                              <Image url="@../img/jedzenie.gif" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="Edycja Przepisów">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TableView fx:id="tbl_recipes" onMouseClicked="#selectRowAction" prefHeight="180.0" prefWidth="600.0">
+                          <columns>
+                            <TableColumn fx:id="c_title" prefWidth="75.0" text="Tytuł" />
+                              <TableColumn fx:id="c_description" prefWidth="75.0" text="Opis" />
+                              <TableColumn fx:id="c_time" prefWidth="75.0" text="Czas Przygotowania" />
+                              <TableColumn fx:id="c_meal" prefWidth="75.0" text="Rodzaj" />
+                              <TableColumn fx:id="c_level" prefWidth="75.0" text="Trudność" />
+                              <TableColumn fx:id="c_type" prefWidth="75.0" text="Typ" />
+                              <TableColumn fx:id="c_ingrediens" prefWidth="291.0" text="Składniki" />
+                          </columns>
+                        </TableView>
+                        <AnchorPane prefHeight="200.0" prefWidth="612.0">
+                           <children>
+                              <TextField fx:id="e_title" layoutX="12.0" layoutY="10.0" promptText="Podaj Tytuł" />
+                              <TextArea fx:id="e_description" layoutX="13.0" layoutY="41.0" prefHeight="125.0" prefWidth="149.0" promptText="Wpisz Opis" />
+                              <Spinner fx:id="e_time" editable="true" layoutX="168.0" layoutY="10.0" />
+                              <ComboBox fx:id="e_meal" layoutX="168.0" layoutY="41.0" prefWidth="150.0" promptText="Wybierz Rodzaj" />
+                              <ComboBox fx:id="e_level" layoutX="168.0" layoutY="74.0" prefWidth="150.0" promptText="Wybierz Trudność" />
+                              <ComboBox fx:id="e_type" layoutX="169.0" layoutY="107.0" prefWidth="150.0" promptText="Wybierz Typ" />
+                              <Button fx:id="btn_image" layoutX="324.0" layoutY="10.0" mnemonicParsing="false" onAction="#uploadImageAction" prefHeight="25.0" prefWidth="119.0" text="Dodaj Zdjęcie" />
+                              <ComboBox fx:id="e_ingrediens" layoutX="169.0" layoutY="139.0" onAction="#addIngredientsAction" prefWidth="150.0" promptText="Wybierz Składniki" />
+                              <ImageView fx:id="e_view" fitHeight="83.0" fitWidth="244.0" layoutX="325.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
+                              <Button fx:id="btn_save" layoutX="450.0" layoutY="10.0" mnemonicParsing="false" onAction="#saveRecipeAction" prefHeight="25.0" prefWidth="119.0" text="Dodaj Przepis" />
+                              <Button fx:id="btn_delete" layoutX="450.0" layoutY="42.0" mnemonicParsing="false" onAction="#deleteRecipeAction" prefHeight="25.0" prefWidth="119.0" text="Usuń Przepis" />
+                              <ListView fx:id="lv_ngrediens_view" layoutX="575.0" layoutY="10.0" prefHeight="157.0" prefWidth="155.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</VBox>
